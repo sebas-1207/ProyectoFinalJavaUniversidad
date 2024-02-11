@@ -4,5 +4,18 @@ import com.campusland.respository.models.Cursos;
 
 public class ConexionBDJsonCursos extends ConexionBDJsonBase<Cursos>{
 
-    private static 
+    private static ConexionBDJsonCursos conexionBDJsonCursos;
+
+    private ConexionBDJsonCursos(){
+        super("cursos.json");
+    }
+
+    public static ConexionBDJsonCursos getConexion() {
+        if (conexionBDJsonCursos != null) {
+            return conexionBDJsonCursos;
+        } else {
+            conexionBDJsonCursos = new ConexionBDJsonCursos();
+            return conexionBDJsonCursos;
+        }
+    }
 }
