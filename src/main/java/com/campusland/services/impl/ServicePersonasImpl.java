@@ -3,8 +3,8 @@ package com.campusland.services.impl;
 import java.util.List;
 
 import com.campusland.exceptiones.personaexceptions.PersonaNullException;
-import com.campusland.respository.RepositoryPersonas;
-import com.campusland.respository.models.Personas;
+import com.campusland.repository.RepositoryPersonas;
+import com.campusland.repository.models.Personas;
 import com.campusland.services.ServicePersonas;
 
 public class ServicePersonasImpl implements ServicePersonas{

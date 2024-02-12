@@ -2,10 +2,10 @@ package com.campusland.views;
 
 import java.time.LocalDateTime;
 import com.campusland.exceptiones.facturaexceptions.FacturaExceptionInsertDataBase;
-import com.campusland.respository.models.Cliente;
-import com.campusland.respository.models.Factura;
-import com.campusland.respository.models.ItemFactura;
-import com.campusland.respository.models.Producto;
+import com.campusland.repository.models.Cliente;
+import com.campusland.repository.models.Factura;
+import com.campusland.repository.models.ItemFactura;
+import com.campusland.repository.models.Producto;
 
 public class ViewFactura extends ViewMain {
 

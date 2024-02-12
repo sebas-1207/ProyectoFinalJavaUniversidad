@@ -3,13 +3,14 @@ package com.campusland.services;
 import java.util.List;
 
 import com.campusland.exceptiones.profesorexceptions.ProfesorNullException;
-import com.campusland.respository.models.Profesores;
+import com.campusland.repository.models.Personas;
+import com.campusland.repository.models.Profesores;
 
 public interface ServiceProfesor {
     
-    List<Profesores> listar();
+    List<Personas> listar();
 
-    Profesores porDocumento(String numeroDocumento) throws ProfesorNullException;
+    Personas porDocumento(String numeroDocumento) throws ProfesorNullException;
 
     void crear(Profesores profesores);
 

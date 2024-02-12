@@ -3,8 +3,9 @@ package com.campusland.services.impl;
 import java.util.List;
 
 import com.campusland.exceptiones.alumnoexceptions.AlumnoNullException;
-import com.campusland.respository.RepositoryAlumno;
-import com.campusland.respository.models.Alumnos;
+import com.campusland.repository.RepositoryAlumno;
+import com.campusland.repository.models.Alumnos;
+import com.campusland.repository.models.Personas;
 import com.campusland.services.ServiceAlumno;
 
 public class ServiceAlumnoImpl implements ServiceAlumno{
@@ -16,15 +17,15 @@ public class ServiceAlumnoImpl implements ServiceAlumno{
     }
 
     @Override
-    public List<Alumnos> listar() {
+    public List<Personas> listar() {
         return this.crudRepositoryAlumno.listar();
     }
 
     @Override
-    public Alumnos porDocumento(String numeroDocumento) throws AlumnoNullException {
-        Alumnos alumnos = this.crudRepositoryAlumno.porDocumento(numeroDocumento);
-        if(alumnos!=null){
-            return alumnos;
+    public Personas porDocumento(String numeroDocumento) throws AlumnoNullException {
+        Personas personas = this.crudRepositoryAlumno.porDocumento(numeroDocumento);
+        if(personas!=null){
+            return personas;
         }else{
             throw new AlumnoNullException("No se encontro alumno por su numero de documento");
         }

@@ -1,7 +1,7 @@
 package com.campusland.views;
 
 import com.campusland.exceptiones.productoexceptions.ProductoNullException;
-import com.campusland.respository.models.Producto;
+import com.campusland.repository.models.Producto;
 
 public class ViewProducto extends ViewMain {
 

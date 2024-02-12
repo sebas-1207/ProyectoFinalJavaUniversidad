@@ -3,7 +3,7 @@ package com.campusland.services;
 import java.util.List;
 
 import com.campusland.exceptiones.departamentosexceptions.DepartamentoNullException;
-import com.campusland.respository.models.Departamentos;
+import com.campusland.repository.models.Departamentos;
 
 public interface ServiceDepartamento {
 

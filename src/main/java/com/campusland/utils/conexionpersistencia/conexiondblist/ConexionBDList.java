@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.campusland.respository.models.Cliente;
-import com.campusland.respository.models.Factura;
-import com.campusland.respository.models.ItemFactura;
-import com.campusland.respository.models.Personas;
-import com.campusland.respository.models.Producto;
-import com.campusland.respository.models.Profesores;
+import com.campusland.repository.models.Cliente;
+import com.campusland.repository.models.Factura;
+import com.campusland.repository.models.ItemFactura;
+import com.campusland.repository.models.Personas;
+import com.campusland.repository.models.Producto;
+import com.campusland.repository.models.Profesores;
 
 import lombok.Data;
 

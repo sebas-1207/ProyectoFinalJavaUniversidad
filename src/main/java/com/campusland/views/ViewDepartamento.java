@@ -1,7 +1,7 @@
 package com.campusland.views;
 
 import com.campusland.exceptiones.departamentosexceptions.DepartamentoNullException;
-import com.campusland.respository.models.Departamentos;
+import com.campusland.repository.models.Departamentos;
 
 public class ViewDepartamento extends ViewMain {
 

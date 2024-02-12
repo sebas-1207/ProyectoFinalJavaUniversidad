@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.campusland.respository.models.Cliente;
-import com.campusland.respository.models.Cursos;
-import com.campusland.respository.models.Departamentos;
-import com.campusland.respository.models.Factura;
-import com.campusland.respository.models.Producto;
+import com.campusland.repository.models.Cliente;
+import com.campusland.repository.models.Cursos;
+import com.campusland.repository.models.Departamentos;
+import com.campusland.repository.models.Factura;
+import com.campusland.repository.models.Producto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

@@ -3,7 +3,7 @@ package com.campusland.services;
 import java.util.List;
 
 import com.campusland.exceptiones.clienteexceptions.ClienteNullException;
-import com.campusland.respository.models.Cliente;
+import com.campusland.repository.models.Cliente;
 
 public interface ServiceCliente {
 

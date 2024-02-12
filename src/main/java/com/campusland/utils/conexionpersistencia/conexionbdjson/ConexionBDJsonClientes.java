@@ -1,6 +1,6 @@
 package com.campusland.utils.conexionpersistencia.conexionbdjson;
 
-import com.campusland.respository.models.Cliente;
+import com.campusland.repository.models.Cliente;
 
 public class ConexionBDJsonClientes extends ConexionBDJsonBase<Cliente> {
 

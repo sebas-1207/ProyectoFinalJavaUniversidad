@@ -3,7 +3,7 @@ package com.campusland.services;
 import java.util.List;
 
 import com.campusland.exceptiones.facturaexceptions.FacturaExceptionInsertDataBase;
-import com.campusland.respository.models.Factura;
+import com.campusland.repository.models.Factura;
 
 public interface ServiceFactura {
 

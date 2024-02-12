@@ -1,7 +1,7 @@
 package com.campusland.views;
 
 import com.campusland.exceptiones.clienteexceptions.ClienteNullException;
-import com.campusland.respository.models.Cliente;
+import com.campusland.repository.models.Cliente;
 
 public class ViewCliente extends ViewMain {
 

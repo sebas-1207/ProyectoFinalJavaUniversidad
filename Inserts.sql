@@ -15,12 +15,12 @@ INSERT INTO Ciudad (nombreCiudad) VALUES
     ('Cartagena');
 
 -- Insertar datos en la tabla Direccion
-INSERT INTO Direccion (tipoDireccion, numero) VALUES
-    ('CALLE', 123),
-    ('CARRERA', 45),
-    ('AVENIDA', 67),
-    ('TRANSVERSAL', 89),
-    ('DIAGONAL', 101);
+INSERT INTO Direccion (tipoDireccion, numero, barrio) VALUES
+    ('CALLE', 123, "Villa Rosa"),
+    ('CARRERA', 45, "Cumbre"),
+    ('AVENIDA', 67, "Cañaveral"),
+    ('TRANSVERSAL', 89, "Provenza"),
+    ('DIAGONAL', 101, "Cacique");
 
 -- Insertar datos en la tabla Edificios
 INSERT INTO Edificios (numeroEdificio, numeroPiso, capacidadMax_salones) VALUES
@@ -96,12 +96,12 @@ INSERT INTO Profesores (especialidad, personaId, departamentoId) VALUES
 
 
 -- Insertar datos en la tabla Alumnos
-INSERT INTO Alumnos (personaId) VALUES
-    (6),
-    (7),
-    (8),
-    (9),
-    (10);    
+INSERT INTO Alumnos (personaId, programaId) VALUES
+(6, 1),
+(7, 2),
+(8, 3),
+(9, 1),
+(10, 2);  
 
 
 -- Insertar datos en la tabla Asignaturas
@@ -128,24 +128,3 @@ INSERT INTO Programacion (dia, horaInicio, horaFin, asignaturaId, matriculaId, s
     ('2024-02-11', '08:00:00', '10:00:00', 3, 3, 3),
     ('2024-02-11', '10:30:00', '12:30:00', 4, 4, 4),
     ('2024-02-12', '08:00:00', '10:00:00', 5, 5, 5);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

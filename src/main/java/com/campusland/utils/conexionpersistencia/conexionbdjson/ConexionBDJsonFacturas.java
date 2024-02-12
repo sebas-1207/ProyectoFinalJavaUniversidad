@@ -1,6 +1,6 @@
 package com.campusland.utils.conexionpersistencia.conexionbdjson;
 
-import com.campusland.respository.models.Factura;
+import com.campusland.repository.models.Factura;
 
 public class ConexionBDJsonFacturas extends ConexionBDJsonBase<Factura>  {
 

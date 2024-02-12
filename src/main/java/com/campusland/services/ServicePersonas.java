@@ -3,7 +3,7 @@ package com.campusland.services;
 import java.util.List;
 
 import com.campusland.exceptiones.personaexceptions.PersonaNullException;
-import com.campusland.respository.models.Personas;
+import com.campusland.repository.models.Personas;
 
 public interface ServicePersonas {
     
@@ -15,5 +15,5 @@ public interface ServicePersonas {
 
     void editar(Personas personas);
 
-    void eliminar(Personas idPersona);
+    void eliminar(Personas personas);
 }

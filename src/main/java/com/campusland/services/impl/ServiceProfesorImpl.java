@@ -3,8 +3,9 @@ package com.campusland.services.impl;
 import java.util.List;
 
 import com.campusland.exceptiones.profesorexceptions.ProfesorNullException;
-import com.campusland.respository.RepositoryProfesor;
-import com.campusland.respository.models.Profesores;
+import com.campusland.repository.RepositoryProfesor;
+import com.campusland.repository.models.Personas;
+import com.campusland.repository.models.Profesores;
 import com.campusland.services.ServiceProfesor;
 
 public class ServiceProfesorImpl implements ServiceProfesor {
@@ -16,17 +17,17 @@ public class ServiceProfesorImpl implements ServiceProfesor {
     }
 
     @Override
-    public List<Profesores> listar() {
+    public List<Personas> listar() {
         return this.crudRepositoryProfesor.listar();
     }
 
     @Override
-    public Profesores porDocumento(String numeroDocumento) throws ProfesorNullException {
-        Profesores profesores = this.crudRepositoryProfesor.porDocumento(numeroDocumento);
-        if (profesores != null){
-            return profesores;
+    public Personas porDocumento(String numeroDocumento) throws ProfesorNullException {
+        Personas personas = this.crudRepositoryProfesor.porDocumento(numeroDocumento);
+        if(personas!=null){
+            return personas;
         }else{
-            throw new ProfesorNullException("No se encontro el profesor por el numero de documento");
+            throw new ProfesorNullException("No se econtro el numero de Documento del Profesor");
         }
     }
 
@@ -44,5 +45,6 @@ public class ServiceProfesorImpl implements ServiceProfesor {
     public void eliminar(Profesores profesores) {
         this.crudRepositoryProfesor.eliminar(profesores);
     }
+
     
 }

@@ -9,6 +9,7 @@ CREATE TABLE `Cursos`(
     `guiaCatedra` VARCHAR(50) NOT NULL
 );
 CREATE TABLE `Programacion`(
+    `idHorario` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `dia` DATE NOT NULL,
     `horaInicio` TIME NOT NULL,
     `horaFin` TIME NOT NULL,
@@ -53,11 +54,12 @@ CREATE TABLE `Periodo`(
 CREATE TABLE `Direccion`(
     `numeroDireccion` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `tipoDireccion` ENUM('CARRERA', 'CALLE', 'TRANSVERSAL', 'AVENIDA', 'DIAGONAL') NOT NULL,
-    `numero` INT NOT NULL
+    `numero` INT NOT NULL,
+    `barrio` VARCHAR(50) NOT NULL
 );
 CREATE TABLE `Departamentos`(
     `idDepartamento` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `nombreDepartamento` VARCHAR(255) NOT NULL
+    `nombreDepartamento` VARCHAR(50) NOT NULL
 );
 CREATE TABLE `Salones`(
     `idSalones` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -76,7 +78,8 @@ CREATE TABLE `Asignaturas`(
 );
 CREATE TABLE `Alumnos`(
     `idAlumno` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `personaId` INT NOT NULL
+    `personaId` INT NOT NULL,
+    `programaId` INT NOT NULL
 );
 CREATE TABLE `Personas`(
     `idPersona` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -116,6 +119,8 @@ ALTER TABLE
     `Asignaturas` ADD CONSTRAINT `asignaturas_periodoid_foreign` FOREIGN KEY(`periodoId`) REFERENCES `Periodo`(`idPeriodo`);
 ALTER TABLE
     `Salones` ADD CONSTRAINT `salones_edificioid_foreign` FOREIGN KEY(`edificioId`) REFERENCES `Edificios`(`idEdificio`);
+ALTER TABLE
+    `Alumnos` ADD CONSTRAINT `alumnos_programaid_foreign` FOREIGN KEY(`programaId`) REFERENCES `Programas`(`idPrograma`);
 ALTER TABLE
     `Personas` ADD CONSTRAINT `personas_ciudadid_foreign` FOREIGN KEY(`ciudadID`) REFERENCES `Ciudad`(`idCiudad`);
 ALTER TABLE

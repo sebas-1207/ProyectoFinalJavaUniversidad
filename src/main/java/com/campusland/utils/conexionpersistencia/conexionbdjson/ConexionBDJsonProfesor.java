@@ -1,6 +1,6 @@
 package com.campusland.utils.conexionpersistencia.conexionbdjson;
 
-import com.campusland.respository.models.Profesores;
+import com.campusland.repository.models.Profesores;
 
 public class ConexionBDJsonProfesor extends ConexionBDJsonBase<Profesores> {
 

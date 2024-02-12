@@ -3,8 +3,8 @@ package com.campusland.services.impl;
 import java.util.List;
 
 import com.campusland.exceptiones.departamentosexceptions.DepartamentoNullException;
-import com.campusland.respository.RepositoryDepartamento;
-import com.campusland.respository.models.Departamentos;
+import com.campusland.repository.RepositoryDepartamento;
+import com.campusland.repository.models.Departamentos;
 import com.campusland.services.ServiceDepartamento;
 
 public class ServiceDepartamentoImpl implements ServiceDepartamento {
