@@ -54,5 +54,6 @@ public class Personas {
         this.direccionNumero = direccionNumero;
         this.ciudadId = ciudadId;
     }
+    
 
 }

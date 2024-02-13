@@ -31,4 +31,9 @@ public class Alumnos{
     public void imrpimir(){
         System.out.println("Documento" + this.getPersonaId());
     }
+
+    public void imprimir(){
+        System.out.println("Numero de Documento: " + this.getPersonaId());
+        System.out.println("Nombre: " + this.getPersonaId());
+    }
 }

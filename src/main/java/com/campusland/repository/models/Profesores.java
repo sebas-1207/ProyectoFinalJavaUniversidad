@@ -27,7 +27,6 @@ public class Profesores{
         this.personaId = personaId;
         this.departamentoId = departamentoId;
     }
-
     
     
 }

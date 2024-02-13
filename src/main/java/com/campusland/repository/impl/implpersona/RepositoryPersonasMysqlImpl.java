@@ -37,7 +37,7 @@ public class RepositoryPersonasMysqlImpl implements RepositoryPersonas {
         List<Personas> listPersonas = new ArrayList<>();
         try (Statement stmt = getConnection().createStatement();
                 ResultSet rs = stmt
-                        .executeQuery("SELECT * FROM Personas p INNER JOIN Alumnos a ON p.idPersona = s.personaId");) {
+                        .executeQuery("SELECT * FROM Personas p INNER JOIN Alumnos a ON p.idPersona = a.personaId");) {
             while (rs.next()) {
                 listPersonas.add(crearPersona(rs));
             }
@@ -50,7 +50,7 @@ public class RepositoryPersonasMysqlImpl implements RepositoryPersonas {
     public List<Personas> listarProfesores(){
         List<Personas> listPersonas = new ArrayList<>();
         try (Statement stmt = getConnection().createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM Personas p INNER JOIN Profesores p ON p.idPersona = p.personaId");) {
+                ResultSet rs = stmt.executeQuery("SELECT * FROM Personas p INNER JOIN Profesores pr ON p.idPersona = pr.personaId");) {
                     while (rs.next()) {
                         listPersonas.add(crearPersona(rs));
                     }

@@ -4,25 +4,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.campusland.exceptiones.alumnoexceptions.AlumnoNullException;
-import com.campusland.exceptiones.ciudadexceptions.CiudadNullException;
-import com.campusland.exceptiones.direccionexceptions.DireccionNullException;
 import com.campusland.exceptiones.personaexceptions.PersonaNullException;
 import com.campusland.repository.enums.TipoDireccion;
-import com.campusland.repository.impl.implciudad.RepositoryCiudadMysqlImpl;
 import com.campusland.repository.impl.impldireccion.RepositoryDireccionImpl;
 import com.campusland.repository.models.Alumnos;
 import com.campusland.repository.models.Ciudad;
 import com.campusland.repository.models.Direccion;
 import com.campusland.repository.models.Personas;
 import com.campusland.repository.models.Programas;
-import com.campusland.services.ServiceCiudad;
 import com.campusland.services.ServiceDireccion;
-import com.campusland.services.impl.ServiceCiudadImpl;
 import com.campusland.services.impl.ServiceDireccionImpl;
 
 public class ViewAlumno extends ViewMain {
 
-    public static void startMenu() {
+    public static void startMenu() throws AlumnoNullException {
 
         int op = 0;
 
@@ -39,10 +34,10 @@ public class ViewAlumno extends ViewMain {
                     buscarAlumno();
                     break;
                 case 4:
-                    // modificarAlumno();
+                    modificarAlumno();
                     break;
                 case 5:
-                    // eliminarAlumno();
+                    //eliminarAlumno();
                     break;
                 default:
                     System.out.println("Opcion no valida");
@@ -60,35 +55,6 @@ public class ViewAlumno extends ViewMain {
         System.out.println("5. Eliminar alumno.");
         System.out.println("6. Salir ");
         return leer.nextInt();
-    }
-
-    public static void buscarAlumno() {
-        System.out.println("Busqueda del Alumno ");
-        leer.nextLine();
-        System.out.print("Documento: ");
-        String numeroDocumento = leer.nextLine();
-
-        try {
-            Personas alumno = serviceAlumno.porDocumento(numeroDocumento);
-            System.out.println();
-            alumno.imprimir()
-        } catch (AlumnoNullException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static Alumnos buscarGetAlumno() {
-        System.out.println("Busqueda del alumno ");
-        leer.nextLine();
-        System.out.print("Documento: ");
-        String numeroDocumento = leer.nextLine();
-
-        try {
-            return serviceAlumno.porDocumento(numeroDocumento);
-        } catch (AlumnoNullException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
     }
 
     public static void crearAlumno() {
@@ -313,35 +279,150 @@ public class ViewAlumno extends ViewMain {
 
     public static void listarAlumnos() {
         System.out.println("Lista de Alumnos");
-        for (Personas persona : servicePersonas.listar()) {
-            System.out.println(persona.toString());
+        for (Personas alumnos : serviceAlumno.listar()) {
+            System.out.println("Tipo de Documento: " + alumnos.getTipoDocumento());
+            System.out.println("Numero de Documento: " + alumnos.getNumeroDocumento());
+            System.out.println("Nombre: " + alumnos.getNombre());
+            System.out.println("Apellido: " + alumnos.getApellido());
+            System.out.println("Numero: " + alumnos.getNumeroTelefono());
+            System.out.println("Fecha de Nacimiento: " + alumnos.getFechaNacimiento());
+            System.out.println("Genero: " + alumnos.getSexo());
+            System.out.println("Direccion: " + alumnos.getDireccionNumero());
+            System.out.println("Ciudad: " + alumnos.getCiudadId());
             System.out.println();
         }
     }
 
-    /* public static void listarAlumnos() {
-        System.out.println("----Listado de Alumnos----");
+/*     private static void eliminarAlumno() {
+        System.out.println("Eliminar un alumno");
+        leer.nextLine();
+        System.out.print("\t Documento del alumno: ");
+        String numeroDocumento = leer.nextLine();
+        
         try {
-            List<Personas> listaAlumnos = serviceAlumno.listar(); 
-            if (listaAlumnos.isEmpty()) {
-                System.out.println("No hay alumnos registrados.");
+            // Obtener el alumno por su documento
+            Personas alumno = serviceAlumno.porDocumento(numeroDocumento);
+            // Verificar si se encontró un alumno con el documento especificado
+            if (alumno != null) {
+                // Eliminar al alumno utilizando el servicio
+                serviceAlumno.eliminar(alumno.getIdPersona());
+                System.out.println("Alumno eliminado exitosamente");
             } else {
-                for (Personas alumno : listaAlumnos) {
-                    // Obtener la información del alumno
-                    Personas persona = alumno.getPersona();
-                    Programas programa = alumno.getPrograma();
-    
-                    // Imprimir la información del alumno
-                    System.out.println("Documento: " + persona.getNumeroDocumento());
-                    System.out.println("Nombre: " + persona.getNombre());
-                    System.out.println("Apellido: " + persona.getApellido());
-                    System.out.println("Programa: " + programa.getNombrePrograma());
-                    System.out.println("------------------------------");
-                }
+                System.out.println("No se encontró ningún alumno con el documento especificado");
             }
         } catch (AlumnoNullException e) {
-            System.out.println("Error al listar los alumnos: " + e.getMessage());
+            e.printStackTrace();
         }
     } */
     
+
+    private static void buscarAlumno() throws AlumnoNullException {
+
+        System.out.println("Buscar Alumnos");
+        leer.nextLine();
+        System.out.print("Numero de Documento: ");
+        String numeroDocumento = leer.nextLine();
+        Personas alumnos = serviceAlumno.porDocumento(numeroDocumento);
+        System.out.println("Alumno Encontrado");
+        System.out.println("Tipo de Documento: " + alumnos.getTipoDocumento());
+        System.out.println("Numero de Documento: " + alumnos.getNumeroDocumento());
+        System.out.println("Nombre: " + alumnos.getNombre());
+        System.out.println("Apellido: " + alumnos.getApellido());
+        System.out.println("Numero: " + alumnos.getNumeroTelefono());
+        System.out.println("Fecha de Nacimiento: " + alumnos.getFechaNacimiento());
+        System.out.println("Genero: " + alumnos.getSexo());
+        System.out.println("Direccion: " + alumnos.getDireccionNumero());
+        System.out.println("Ciudad: " + alumnos.getCiudadId());
+        System.out.println();
+    }
+
+    private static void modificarAlumno() throws AlumnoNullException {
+
+        System.out.println("Editar un Estudiante");
+        leer.nextLine();
+        System.out.print("\t Numero de Documento: ");
+        String numeroDocumento = leer.nextLine();
+        Personas alumnos = serviceAlumno.porDocumento(numeroDocumento);
+
+        System.out.println("Editando Alumno...");
+
+        System.out.println("Modificar nombre: si o no? ");
+        String opcion = leer.nextLine();
+        if (opcion.equalsIgnoreCase("si")) {
+            System.out.println("Nombre: ");
+            alumnos.setNombre((leer.nextLine().length() > 0) ? leer.nextLine() : alumnos.getNombre());
+        }
+
+        System.out.println("Modificar apellido: si o no? ");
+        opcion = leer.nextLine();
+        if (opcion.equalsIgnoreCase("si")) {
+            System.out.println("Apellido: ");
+            alumnos.setApellido((leer.nextLine().length() > 0) ? leer.nextLine() : alumnos.getApellido());
+        }
+
+        System.out.println("Modificar numero: si o no? ");
+        opcion = leer.nextLine();
+        if (opcion.equalsIgnoreCase("si")) {
+            System.out.println("Numero: ");
+            alumnos.setNumeroTelefono(
+                    (leer.nextLine().length() > 0) ? leer.nextLine() : alumnos.getNumeroTelefono());
+        }
+
+        System.out.println("Modificar fecha de nacimiento: si o no? ");
+        opcion = leer.nextLine();
+        if (opcion.equalsIgnoreCase("si")) {
+            System.out.println("Fecha de Nacimiento (AAAA-MM-DD): ");
+            String fechaNacimientoStr = leer.nextLine();
+            // Verificar si se ingresó una fecha no vacía
+            if (!fechaNacimientoStr.isEmpty()) {
+                try {
+                    // Convertir la cadena de texto a java.sql.Date
+                    java.sql.Date fechaNacimiento = java.sql.Date.valueOf(fechaNacimientoStr);
+                    // Establecer la fecha de nacimiento en el objeto alumno
+                    alumnos.setFechaNacimiento(fechaNacimiento);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(
+                            "Error: Formato de fecha incorrecto. La fecha debe tener el formato AAAA-MM-DD.");
+                }
+            } else {
+                // Conservar la fecha de nacimiento existente si no se ingresó una nueva
+                System.out.println("No se ingresó una nueva fecha de nacimiento. Se mantendrá la fecha actual.");
+            }
+        }
+
+        System.out.println("Modificar genero: si o no? ");
+        opcion = leer.nextLine();
+        if (opcion.equalsIgnoreCase("si")) {
+            System.out.println("Genero: ");
+            alumnos.setSexo((leer.nextLine().length() > 0) ? leer.nextLine() : alumnos.getSexo());
+        }
+
+        List<Ciudad> ciudades = serviceCiudad.listar();
+        System.out.println("Lista de Ciudades");
+        for (int i = 0; i < ciudades.size(); i++) {
+            System.out.println("\t" + (i + 1) + ") " + ciudades.get(i).getNombreCiudad());
+        }
+        int op_ciudad = 0;
+        do {
+            System.out.print("\t Elija una ciudad: ");
+            op_ciudad = leer.nextInt();
+        } while (op_ciudad < 1 || op_ciudad > ciudades.size());
+        int ciudad = ciudades.get(op_ciudad - 1).getIdCiudad();
+        alumnos.setCiudadId(ciudad);
+        servicePersonas.editar(alumnos);
+        List<Programas> programas = servicePrograma.listar();
+        int op_programa = 0;
+        System.out.println("Lista de programas");
+        for (int i = 0; i < programas.size(); i++) {
+            System.out.println("\t" + (i + 1) + ") " + programas.get(i).getNombrePrograma());
+        }
+        do {
+            System.out.print("\t Elija un programa: ");
+            op_programa = leer.nextInt();
+        } while (op_programa < 1 || op_programa > programas.size());
+        int programa = programas.get(op_programa - 1).getIdPrograma();
+        serviceAlumno.editar(new Alumnos(programa, alumnos.getIdPersona()));
+
+    }
+
 }

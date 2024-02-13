@@ -1,30 +1,25 @@
 package com.campusland.views;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 import com.campusland.exceptiones.personaexceptions.PersonaNullException;
-import com.campusland.repository.RepositoryProfesor;
+import com.campusland.exceptiones.profesorexceptions.ProfesorNullException;
 import com.campusland.repository.enums.TipoDireccion;
 import com.campusland.repository.impl.impldireccion.RepositoryDireccionImpl;
-import com.campusland.repository.models.Alumnos;
 import com.campusland.repository.models.Ciudad;
 import com.campusland.repository.models.Departamentos;
 import com.campusland.repository.models.Direccion;
 import com.campusland.repository.models.Personas;
 import com.campusland.repository.models.Profesores;
-import com.campusland.repository.models.Programas;
 import com.campusland.services.ServiceDireccion;
-import com.campusland.services.ServiceProfesor;
 import com.campusland.services.impl.ServiceDireccionImpl;
-import com.campusland.services.impl.ServiceProfesorImpl;
 
 public class ViewProfesor extends ViewMain {
     private static final Scanner leer = new Scanner(System.in);
 
-    public static void startMenu() {
+    public static void startMenu() throws ProfesorNullException {
         int op;
         do {
             op = mostrarMenu();
@@ -39,10 +34,10 @@ public class ViewProfesor extends ViewMain {
                     buscarProfesor();
                     break;
                 case 4:
-                    modificarProfesor();
+                    //modificarProfesor();
                     break;
                 case 5:
-                    eliminarProfesor();
+                    //eliminarProfesor();
                     break;
                 default:
                     System.out.println("Opción no válida");
@@ -257,39 +252,43 @@ public class ViewProfesor extends ViewMain {
     }
 
     public static void listarProfesor() {
-        System.out.println("Lista de Personas");
-        for (Personas persona : servicePersonas.listar()) {
-            System.out.println(persona.toString());
+        System.out.println("Lista de Profesores");
+        for (Personas profesores : serviceProfesor.listar()) {
+            System.out.println("Tipo de Documento: " + profesores.getTipoDocumento());
+            System.out.println("Numero de Documento: " + profesores.getNumeroDocumento());
+            System.out.println("Nombre: " + profesores.getNombre());
+            System.out.println("Apellido: " + profesores.getApellido());
+            System.out.println("Numero: " + profesores.getNumeroTelefono());
+            System.out.println("Fecha de Nacimiento: " + profesores.getFechaNacimiento());
+            System.out.println("Genero: " + profesores.getSexo());
+            System.out.println("Direccion: " + profesores.getDireccionNumero());
+            System.out.println("Ciudad: " + profesores.getCiudadId());
             System.out.println();
         }
     }
 
-    public static void buscarProfesor() {
-        System.out.println("Búsqueda de persona ");
-        System.out.print("ID: ");
-        int idPersona = leer.nextInt();
-        try {
-            Personas persona = servicePersonas.porCodigo(idPersona);
-            System.out.println();
-            System.out.println(persona.toString());
-        } catch (PersonaNullException e) {
-            System.out.println(e.getMessage());
-        }
+    private static void buscarProfesor() throws ProfesorNullException {
+
+        System.out.println("Buscar Profesor");
+        leer.nextLine();
+        System.out.print("Numero de Documento: ");
+        String numeroDocumento = leer.nextLine();
+        Personas profesores = serviceProfesor.porDocumento(numeroDocumento);
+        System.out.println("Profesor Encontrado");
+        System.out.println("Tipo de Documento: " + profesores.getTipoDocumento());
+        System.out.println("Numero de Documento: " + profesores.getNumeroDocumento());
+        System.out.println("Nombre: " + profesores.getNombre());
+        System.out.println("Apellido: " + profesores.getApellido());
+        System.out.println("Numero: " + profesores.getNumeroTelefono());
+        System.out.println("Fecha de Nacimiento: " + profesores.getFechaNacimiento());
+        System.out.println("Genero: " + profesores.getSexo());
+        System.out.println("Direccion: " + profesores.getDireccionNumero());
+        System.out.println("Ciudad: " + profesores.getCiudadId());
+        System.out.println();
     }
 
-    public static Personas buscarGetPersona() {
-        System.out.println("Búsqueda de persona ");
-        System.out.print("ID: ");
-        int idPersona = leer.nextInt();
-        try {
-            return servicePersonas.porCodigo(idPersona);
-        } catch (PersonaNullException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-    }
 
-    public static void modificarProfesor() {
+/*     public static void modificarProfesor() {
         Personas personaActual = buscarGetPersona();
         leer.nextLine();
         if (personaActual != null) {
@@ -305,7 +304,7 @@ public class ViewProfesor extends ViewMain {
 
             servicePersonas.editar(personaActual);
         }
-    }
+    } */
 
     public static void modificarAtributoPersona(String atributo, Personas persona) {
         System.out.println("¿Modificar " + atributo + "? (si o no): ");
@@ -330,7 +329,7 @@ public class ViewProfesor extends ViewMain {
         }
     }
 
-    public static void modificarAtributoFechaNacimiento(Personas persona) {
+/*     public static void modificarAtributoFechaNacimiento(Personas persona) {
         System.out.println("¿Modificar fecha de nacimiento? (si o no): ");
         String opcion = leer.nextLine();
         if (opcion.equalsIgnoreCase("si")) {
@@ -373,8 +372,8 @@ public class ViewProfesor extends ViewMain {
             persona.getDireccion().setNumero(nuevoNumeroDireccion);
         }
     }
-
-    public static void eliminarProfesor() {
+ */
+/*     public static void eliminarProfesor() {
         Personas persona = buscarGetPersona();
         if (persona != null) {
             servicePersonas.eliminar(persona);
@@ -382,7 +381,7 @@ public class ViewProfesor extends ViewMain {
         } else {
             System.out.println("Se presentó un problema y no se pudo eliminar la persona ");
         }
-    }
+    } */
 
     public static String obtenerTipoDocumento(int opcion) {
         switch (opcion) {

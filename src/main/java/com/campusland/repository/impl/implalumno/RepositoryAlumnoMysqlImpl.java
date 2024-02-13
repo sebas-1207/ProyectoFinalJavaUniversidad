@@ -68,7 +68,7 @@ public class RepositoryAlumnoMysqlImpl implements RepositoryAlumno {
     @Override
     public void eliminar(Alumnos alumnos) {
         RepositoryPersonasMysqlImpl repositoryPersonasMysqlImpl = new RepositoryPersonasMysqlImpl();
-        String sql = "DELETE FROM Alumnos WHERE personaId = ?";
+        String sql = "DELETE FROM Alumnos WHERE idAlumno = ?";
         try (PreparedStatement stmt = getConnection().prepareStatement(sql)) {
             stmt.setInt(1, alumnos.getIdAlumno());
             stmt.executeUpdate();
